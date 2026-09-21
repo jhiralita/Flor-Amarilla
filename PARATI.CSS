@@ -1,0 +1,207 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #030814;
+  --flower-stem: #1a4314;
+  --flower-leaf: #235d1a;
+  --yellow-main: #ffd700;
+  --yellow-light: #fff066;
+  --yellow-dark: #e6b800;
+}
+
+body {
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.night {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(ellipse at top, #0c1b33 0%, var(--bg-color) 70%);
+}
+
+.message {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff9d6;
+  text-align: center;
+  z-index: 100;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  width: 90%;
+}
+
+.message h1 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+}
+
+/* Contenedor principal de flores */
+.flowers {
+  position: relative;
+  transform: scale(0.9);
+  z-index: 2;
+  margin-bottom: 5vmin;
+}
+
+.flower {
+  position: absolute;
+  bottom: 0;
+  transform-origin: bottom center;
+}
+
+.flower--1 {
+  left: 0;
+  animation: moving-flower-1 4s ease-in-out infinite alternate;
+}
+
+.flower--1 .flower__line {
+  height: 55vmin;
+}
+
+.flower--2 {
+  left: -18vmin;
+  transform: rotate(-15deg);
+  animation: moving-flower-2 3.8s ease-in-out infinite alternate;
+}
+
+.flower--2 .flower__line {
+  height: 45vmin;
+}
+
+.flower--3 {
+  left: 18vmin;
+  transform: rotate(15deg);
+  animation: moving-flower-3 4.2s ease-in-out infinite alternate;
+}
+
+.flower--3 .flower__line {
+  height: 48vmin;
+}
+
+
+/* Tallos */
+.flower__line {
+  width: 1.8vmin;
+  background-image: linear-gradient(to top, transparent 0%, #112d0d 10%, var(--flower-stem) 100%);
+  border-radius: 1vmin;
+  position: relative;
+  animation: grow-stem 1.5s ease-out forwards;
+}
+
+/* Capullo y Pétalos Amarillos */
+.flower__wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: bloom-flower 1.5s 1.2s ease-out forwards;
+}
+
+.flower__center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8vmin;
+  height: 8vmin;
+  background-image: radial-gradient(circle, #7a4300 0%, #3d2100 100%);
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.flower__petal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7vmin;
+  height: 16vmin;
+  background-image: linear-gradient(to top, var(--yellow-dark) 0%, var(--yellow-main) 60%, var(--yellow-light) 100%);
+  border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+  transform-origin: bottom center;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+
+/* Distribución de pétalos en círculo */
+.flower__petal--1  { transform: translate(-50%, -100%) rotate(0deg); }
+.flower__petal--2  { transform: translate(-50%, -100%) rotate(30deg); }
+.flower__petal--3  { transform: translate(-50%, -100%) rotate(60deg); }
+.flower__petal--4  { transform: translate(-50%, -100%) rotate(90deg); }
+.flower__petal--5  { transform: translate(-50%, -100%) rotate(120deg); }
+.flower__petal--6  { transform: translate(-50%, -100%) rotate(150deg); }
+.flower__petal--7  { transform: translate(-50%, -100%) rotate(180deg); }
+.flower__petal--8  { transform: translate(-50%, -100%) rotate(210deg); }
+.flower__petal--9  { transform: translate(-50%, -100%) rotate(240deg); }
+.flower__petal--10 { transform: translate(-50%, -100%) rotate(270deg); }
+.flower__petal--11 { transform: translate(-50%, -100%) rotate(300deg); }
+.flower__petal--12 { transform: translate(-50%, -100%) rotate(330deg); }
+
+/* Hojas del tallo */
+.flower__leaf {
+  position: absolute;
+  width: 6vmin;
+  height: 12vmin;
+  background-image: linear-gradient(to top, #112d0d, var(--flower-leaf));
+  border-radius: 100% 0% 100% 0%;
+}
+
+.flower__leaf--1 {
+  top: 40%;
+  left: -5.5vmin;
+  transform: rotate(-35deg);
+}
+
+.flower__leaf--2 {
+  top: 20%;
+  right: -5.5vmin;
+  transform: rotate(35deg) scaleX(-1);
+}
+
+/* Animations */
+@keyframes grow-stem {
+  0% {
+    height: 0;
+  }
+}
+
+@keyframes bloom-flower {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes moving-flower-1 {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes moving-flower-2 {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(-12deg); }
+}
+
+@keyframes moving-flower-3 {
+  0%, 100% { transform: rotate(15deg); }
+  50% { transform: rotate(18deg); }
+}
